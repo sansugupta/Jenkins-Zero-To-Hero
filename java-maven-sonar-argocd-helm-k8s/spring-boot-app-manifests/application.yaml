@@ -1,0 +1,18 @@
+# java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/application.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: spring-boot-app
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/sansugupta/Jenkins-Zero-To-Hero.git
+    path: java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests
+    targetRevision: main
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
